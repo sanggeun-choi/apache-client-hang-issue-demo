@@ -3,3 +3,6 @@ GET http://localhost:8080/api/demo/single
 
 ### multiple request
 GET http://localhost:8080/api/demo/multiple
+
+### "Transfer-Encoding: chunked" 테스트
+GET http://localhost:8081/api/messages
