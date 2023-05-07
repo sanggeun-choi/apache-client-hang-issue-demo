@@ -1,0 +1,5 @@
+### single request
+GET http://localhost:8080/api/demo/single
+
+### multiple request
+GET http://localhost:8080/api/demo/multiple
