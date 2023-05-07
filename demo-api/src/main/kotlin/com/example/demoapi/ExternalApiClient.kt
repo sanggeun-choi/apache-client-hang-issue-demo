@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestBody
 import java.nio.charset.StandardCharsets.UTF_8
 
-@FeignClient(name = "external-client", url = "http://localhost:8081", configuration = [ExternalApiClient.Config::class])
+@FeignClient(name = "external-client", url = "\${external.api.url}", configuration = [ExternalApiClient.Config::class])
 interface ExternalApiClient {
-    @GetMapping("/api/messages")
+    @GetMapping("/api/external/messages")
     fun getMessages(@RequestBody req: Req): String
 
     data class Req(
@@ -38,7 +38,7 @@ interface ExternalApiClient {
 //                val body = response.use { it.body().asInputStream().bufferedReader().readText() } // correct
                 val body = response.body()?.asInputStream()?.bufferedReader()?.readText() // incorrect
 
-                log.info("##body : $body")
+                log.info("## body : $body, response : ${response.headers()}")
 
                 Response.builder()
                     .request(request)

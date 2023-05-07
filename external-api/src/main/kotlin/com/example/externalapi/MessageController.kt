@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class MessageController {
-    @GetMapping("/api/messages")
+    @GetMapping("/api/external/messages")
     fun getMessages(): String {
         return "Hello World"
     }
