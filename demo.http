@@ -6,3 +6,6 @@ GET http://localhost:8080/api/demo/multiple
 
 ### "Transfer-Encoding: chunked" 테스트
 GET http://localhost:8081/api/messages
+
+### 잘못된 url, method로 요청시 "Transfer-Encoding: chunked"로 응답을 준다??
+POST http://localhost:8081/api/messages

@@ -7,13 +7,13 @@ import org.apache.http.impl.client.HttpClients
 import org.slf4j.LoggerFactory
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.context.annotation.Bean
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestBody
 import java.nio.charset.StandardCharsets.UTF_8
 
-@FeignClient(name = "my-client", url = "http://localhost:8081", configuration = [ExternalApiClient.Config::class])
+@FeignClient(name = "external-client", url = "http://localhost:8081", configuration = [ExternalApiClient.Config::class])
 interface ExternalApiClient {
-    @PostMapping("/api/messages")
+    @GetMapping("/api/messages")
     fun getMessages(@RequestBody req: Req): String
 
     data class Req(
@@ -37,7 +37,6 @@ interface ExternalApiClient {
 
 //                val body = response.use { it.body().asInputStream().bufferedReader().readText() } // correct
                 val body = response.body()?.asInputStream()?.bufferedReader()?.readText() // incorrect
-//                val body = "Hello" // incorrect
 
                 log.info("##body : $body")
 
